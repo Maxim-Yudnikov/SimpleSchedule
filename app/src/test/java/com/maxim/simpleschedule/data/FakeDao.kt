@@ -2,7 +2,6 @@ package com.maxim.simpleschedule.data
 
 import com.maxim.simpleschedule.core.data.DayRoom
 import com.maxim.simpleschedule.core.data.DaysDao
-import com.maxim.simpleschedule.core.domain.DayDomain
 
 class FakeDao : DaysDao {
     val saveDayList = mutableListOf<DayRoom>()
