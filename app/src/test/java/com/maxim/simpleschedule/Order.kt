@@ -20,3 +20,4 @@ interface Order {
 
 const val INTERACTOR = "INTERACTOR"
 const val NAVIGATION = "NAVIGATION"
+const val CLEAR = "CLEAR"
