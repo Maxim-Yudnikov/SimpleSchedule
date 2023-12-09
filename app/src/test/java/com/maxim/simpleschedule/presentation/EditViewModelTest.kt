@@ -11,6 +11,7 @@ import com.maxim.simpleschedule.core.presentation.LessonUi
 import com.maxim.simpleschedule.core.presentation.Screen
 import com.maxim.simpleschedule.edit.presentation.EditViewModel
 import com.maxim.simpleschedule.list.domain.SaveResult
+import com.maxim.simpleschedule.list.presentation.ListScreen
 import kotlinx.coroutines.Dispatchers
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -37,13 +38,16 @@ class EditViewModelTest {
 
     @Test
     fun test_init() {
-        viewModel.init(56)
+        viewModel.init(false, 56)
+        assertEquals(emptyList<DayUi>(), communication.dayList)
+
+        viewModel.init(true, 56)
         assertEquals(listOf(DayUi.Base(56, "start", "end", emptyList())), communication.dayList)
     }
 
     @Test
     fun test_new_item() {
-        viewModel.init(56)
+        viewModel.init(true, 56)
         interactor.returnCached = DayDomain.Base(56, "start", "end", listOf(LessonDomain.Base("")))
         viewModel.newItem()
         assertEquals(
@@ -58,7 +62,7 @@ class EditViewModelTest {
 
     @Test
     fun test_rename_item() {
-        viewModel.init(56)
+        viewModel.init(true, 56)
         interactor.returnCached = DayDomain.Base(56, "start", "end", emptyList())
         viewModel.newItem()
         viewModel.renameItem(0, "name")
@@ -68,7 +72,7 @@ class EditViewModelTest {
 
     @Test
     fun test_delete_item() {
-        viewModel.init(56)
+        viewModel.init(true, 56)
         interactor.returnCached = DayDomain.Base(56, "start", "end", listOf(LessonDomain.Base("")))
         viewModel.newItem()
         interactor.returnCached =
@@ -103,7 +107,7 @@ class EditViewModelTest {
         assertEquals(listOf("error text"), communication.errorList)
         assertEquals(listOf("start", "start"), interactor.saveItemFirstList)
         assertEquals(listOf("end", "end"), interactor.saveItemSecondList)
-        assertEquals(listOf(Screen.Pop), navigation.screens)
+        assertEquals(listOf(ListScreen), navigation.screens)
         assertEquals(listOf(EditViewModel::class.java), clear.list)
         order.check(listOf(INTERACTOR, INTERACTOR, NAVIGATION, CLEAR_COMMUNICATION, CLEAR))
     }
@@ -111,7 +115,7 @@ class EditViewModelTest {
     @Test
     fun test_cancel() {
         viewModel.cancel()
-        assertEquals(listOf(Screen.Pop), navigation.screens)
+        assertEquals(listOf(ListScreen), navigation.screens)
         assertEquals(listOf(EditViewModel::class.java), clear.list)
         assertEquals(1, communication.clearCounter)
         order.check(listOf(INTERACTOR, NAVIGATION, CLEAR_COMMUNICATION, CLEAR))

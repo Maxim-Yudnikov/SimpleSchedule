@@ -29,8 +29,10 @@ class EditDataSourceTest {
 
     @Test
     fun test_get_day() = runBlocking {
+        dao.getDayReturnEmptyList = false
         val actual = dataSource.getDay(5)
-        assertEquals(DayDomain.Base(5, "start", "end", emptyList()), actual)
+        assertEquals(DayDomain.Base(5, "start", "end", listOf(LessonDomain.Base("one"),
+            LessonDomain.Base("two"))), actual)
     }
 
     @Test

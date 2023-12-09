@@ -5,7 +5,6 @@ import com.maxim.simpleschedule.core.data.DaysDao
 import com.maxim.simpleschedule.core.domain.DayDomain
 import com.maxim.simpleschedule.core.domain.EmptyItemNameException
 import com.maxim.simpleschedule.core.domain.EmptyLessonListException
-import com.maxim.simpleschedule.core.domain.LessonDomain
 
 interface EditDataSource {
     suspend fun getDay(id: Int): DayDomain
@@ -21,7 +20,6 @@ interface EditDataSource {
         private val dayIdCache: DayIdCache,
         private val lessonsCache: LessonsCache
     ) : EditDataSource {
-        //todo not tested getDay and put in lessonsCache
         override suspend fun getDay(id: Int): DayDomain {
             dayIdCache.cache(id)
             val day = dao.getDay(id)!!
