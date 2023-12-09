@@ -14,7 +14,7 @@ interface AbstractCommunication {
     }
 
     abstract class Abstract<T : Any>(
-        private val liveData: MutableLiveData<T>
+        protected val liveData: MutableLiveData<T>
     ) : Update<T>, Observe<T>
     {
         override fun update(value: T) {
