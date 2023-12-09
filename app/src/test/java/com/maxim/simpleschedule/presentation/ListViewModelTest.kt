@@ -4,6 +4,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.maxim.simpleschedule.core.domain.DayDomain
 import com.maxim.simpleschedule.core.presentation.DayUi
+import com.maxim.simpleschedule.edit.presentation.EditScreen
 import com.maxim.simpleschedule.list.domain.ListInteractor
 import com.maxim.simpleschedule.list.presentation.ListCommunication
 import com.maxim.simpleschedule.list.presentation.ListViewModel
@@ -16,7 +17,8 @@ class ListViewModelTest {
     fun test_init() {
         val communication = FakeListCommunication()
         val interactor = FakeListInteractor()
-        val viewModel = ListViewModel(interactor, communication, Dispatchers.Unconfined)
+        val navigation = FakeNavigation(Order.Base())
+        val viewModel = ListViewModel(interactor, communication, navigation, Dispatchers.Unconfined)
 
         viewModel.init()
         assertEquals(

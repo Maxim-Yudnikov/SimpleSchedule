@@ -28,7 +28,6 @@ class ListViewModel(
             communication.update(interactor.getList().map { it.toUi() })
         }
     }
-    //TODO not tested edit
     fun edit(id: Int) {
         navigation.update(EditScreen(id))
     }

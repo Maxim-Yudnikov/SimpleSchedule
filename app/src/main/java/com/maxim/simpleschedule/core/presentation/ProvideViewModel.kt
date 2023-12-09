@@ -31,7 +31,8 @@ interface ProvideViewModel {
                 ListViewModel::class.java ->
                     ListViewModel(
                         ListInteractor.Base(ListDataSource.Base(dao)),
-                        ListCommunication.Base()
+                        ListCommunication.Base(),
+                        navigation
                     )
                 EditViewModel::class.java ->
                     EditViewModel(
