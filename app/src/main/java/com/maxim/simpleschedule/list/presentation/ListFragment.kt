@@ -16,5 +16,17 @@ class ListFragment: AbstractFragment<FragmentListBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as ProvideViewModel).viewModel(ListViewModel::class.java)
+
+        val adapter = ListAdapter(object : ListAdapter.Listener {
+            override fun edit(id: Int) {
+                viewModel.edit(id)
+            }
+        })
+        binding.recyclerView.adapter = adapter
+        viewModel.observe(this) {
+            adapter.update(it)
+        }
+
+        viewModel.init()
     }
 }

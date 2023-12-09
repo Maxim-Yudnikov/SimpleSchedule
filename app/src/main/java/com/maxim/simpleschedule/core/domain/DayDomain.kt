@@ -4,7 +4,7 @@ import com.maxim.simpleschedule.core.presentation.DayUi
 
 abstract class DayDomain {
     abstract fun toUi(): DayUi
-    open fun checkEmptyLessons(): DayDomain = Empty
+    abstract fun checkEmptyLessons(): DayDomain
     data class Base(
         private val id: Int,
         private val startTime: String,
@@ -15,9 +15,5 @@ abstract class DayDomain {
 
         override fun checkEmptyLessons() =
             if (lessons.isNotEmpty()) this else this.copy(lessons = listOf(LessonDomain.Empty))
-    }
-
-    object Empty : DayDomain() {
-        override fun toUi() = DayUi.Empty
     }
 }
