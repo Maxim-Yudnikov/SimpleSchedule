@@ -2,6 +2,7 @@ package com.maxim.simpleschedule.list.presentation
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import com.maxim.simpleschedule.core.presentation.DayUi
 import com.maxim.simpleschedule.list.domain.ListInteractor
 import kotlinx.coroutines.CoroutineDispatcher
@@ -14,7 +15,7 @@ class ListViewModel(
     private val interactor: ListInteractor,
     private val communication: ListCommunication.Mutable,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
-) {
+): ViewModel() {
     private val viewModelScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
     fun init() {
