@@ -2,6 +2,7 @@ package com.maxim.simpleschedule.domain
 
 import com.maxim.simpleschedule.core.domain.DayDomain
 import com.maxim.simpleschedule.core.domain.LessonDomain
+import com.maxim.simpleschedule.list.data.ListDataSource
 import com.maxim.simpleschedule.list.domain.ListInteractor
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
@@ -18,7 +19,7 @@ class ListInteractorTest {
         var actual = interactor.getList()
         assertEquals(listOf(DayDomain.Base(123,"start", "end", listOf(LessonDomain.Empty))), actual)
 
-        dataSource.returnEmpty = true
+        dataSource.returnEmpty = false
         actual = interactor.getList()
         assertEquals(listOf(DayDomain.Base(123,"start", "end", listOf(LessonDomain.Base("name")))), actual)
     }
