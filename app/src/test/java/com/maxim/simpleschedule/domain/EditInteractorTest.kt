@@ -1,6 +1,9 @@
 package com.maxim.simpleschedule.domain
 
 import com.maxim.simpleschedule.core.domain.DayDomain
+import com.maxim.simpleschedule.core.domain.EmptyLessonListException
+import com.maxim.simpleschedule.core.domain.FailureHandler
+import com.maxim.simpleschedule.edit.data.EditDataSource
 import com.maxim.simpleschedule.edit.domain.EditInteractor
 import com.maxim.simpleschedule.list.domain.SaveResult
 import kotlinx.coroutines.runBlocking
@@ -15,13 +18,19 @@ class EditInteractorTest {
     @Before
     fun before() {
         dataSource = FakeEditDataSource()
-        interactor = EditInteractor.Base(dataSource, failureHandler.Base())
+        interactor = EditInteractor.Base(dataSource, FailureHandler.Base())
     }
 
     @Test
     fun test_get_day() = runBlocking {
-        val actual = interactor.getDay(23)
+        val actual = interactor.getDay(123)
         assertEquals(DayDomain.Base(123, "start", "end", emptyList()), actual)
+    }
+
+    @Test
+    fun test_get_cached_day() {
+        val actual = interactor.getCachedDay()
+        assertEquals(DayDomain.Base(666, "cached", "day", emptyList()), actual)
     }
 
     @Test
@@ -81,6 +90,10 @@ class EditInteractorTest {
             return DayDomain.Base(id, "start", "end", emptyList())
         }
 
+        override fun getCachedDay(): DayDomain {
+            return DayDomain.Base(666, "cached", "day", emptyList())
+        }
+
         override fun newItem() {
             newItemCounter++
         }
@@ -98,7 +111,7 @@ class EditInteractorTest {
             saveFirstList.add(startTime)
             saveSecondList.add(endTime)
             if (!saveReturnSuccess)
-                throw EmptyLessonListExpection("Lesson's name at position 1 is empty")
+                throw EmptyLessonListException("Lesson's name at position 1 is empty")
         }
 
         override fun cancel() {
