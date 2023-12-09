@@ -4,7 +4,7 @@
     android:id="@+id/lessonName"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    style="@style/LessonLayout"
     android:padding="3dp"
     android:textSize="16sp"
     tools:text="Math"

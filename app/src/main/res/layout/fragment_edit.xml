@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    style="@style/Background"
     android:orientation="vertical">
 
     <TextView
@@ -21,11 +21,12 @@
         android:layout_width="match_parent"
         android:layout_height="230dp"
         android:layout_margin="5dp"
-        android:background="@color/recycler_view"
+        style="@style/RecyclerView"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <Button
         android:id="@+id/addItemButton"
+        style="@style/Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -63,9 +64,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/end_time_hint"
-                android:maxLength="10"
                 android:inputType="text"
-                android:maxLines="1"/>
+                android:maxLength="10"
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
@@ -77,6 +78,7 @@
 
     <Button
         android:id="@+id/saveButton"
+        style="@style/Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"

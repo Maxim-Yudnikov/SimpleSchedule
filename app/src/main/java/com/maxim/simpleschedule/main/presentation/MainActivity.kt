@@ -1,7 +1,11 @@
 package com.maxim.simpleschedule.main.presentation
 
+import android.app.UiModeManager
+import android.content.Context
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModel
 import com.maxim.simpleschedule.R
 import com.maxim.simpleschedule.core.presentation.ProvideViewModel
@@ -12,6 +16,7 @@ class MainActivity : AppCompatActivity(), ProvideViewModel {
     private lateinit var viewModel: MainViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
