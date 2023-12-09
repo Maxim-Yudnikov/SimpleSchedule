@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import com.maxim.simpleschedule.core.domain.DayDomain
 import com.maxim.simpleschedule.core.presentation.DayUi
 import com.maxim.simpleschedule.edit.presentation.EditScreen
+import com.maxim.simpleschedule.edit.presentation.EditViewModel
 import com.maxim.simpleschedule.list.domain.ListInteractor
 import com.maxim.simpleschedule.list.presentation.ListCommunication
 import com.maxim.simpleschedule.list.presentation.ListViewModel
@@ -17,8 +18,10 @@ class ListViewModelTest {
     fun test_init() {
         val communication = FakeListCommunication()
         val interactor = FakeListInteractor()
-        val navigation = FakeNavigation(Order.Base())
-        val viewModel = ListViewModel(interactor, communication, navigation, Dispatchers.Unconfined)
+        val order = Order.Base()
+        val navigation = FakeNavigation(order)
+        val clear = FakeClearViewModel(order)
+        val viewModel = ListViewModel(interactor, communication, navigation, clear, Dispatchers.Unconfined)
 
         viewModel.init()
         assertEquals(
@@ -29,6 +32,21 @@ class ListViewModelTest {
                 )
             ), communication.list
         )
+    }
+
+    @Test
+    fun test_edit() {
+        val communication = FakeListCommunication()
+        val interactor = FakeListInteractor()
+        val order = Order.Base()
+        val navigation = FakeNavigation(order)
+        val clear = FakeClearViewModel(order)
+        val viewModel = ListViewModel(interactor, communication, navigation, clear, Dispatchers.Unconfined)
+
+        viewModel.edit(5)
+        assertEquals(listOf(EditScreen(5)), navigation.screens)
+        assertEquals(listOf(ListViewModel::class.java), clear.list)
+        order.check(listOf(NAVIGATION, CLEAR))
     }
 
 
