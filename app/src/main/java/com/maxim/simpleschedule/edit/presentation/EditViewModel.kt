@@ -10,6 +10,7 @@ import com.maxim.simpleschedule.core.presentation.Navigation
 import com.maxim.simpleschedule.core.presentation.Screen
 import com.maxim.simpleschedule.edit.domain.EditInteractor
 import com.maxim.simpleschedule.list.domain.SaveResult
+import com.maxim.simpleschedule.list.presentation.ListScreen
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -50,7 +51,7 @@ class EditViewModel(
         viewModelScope.launch(dispatcher) {
             val result = interactor.save(startTime, endTime)
             if (result == SaveResult.Success) {
-                navigation.update(Screen.Pop)
+                navigation.update(ListScreen)
                 communication.clear()
                 clear.clearViewModel(EditViewModel::class.java)
             } else {
@@ -61,7 +62,7 @@ class EditViewModel(
 
     fun cancel() {
         interactor.cancel()
-        navigation.update(Screen.Pop)
+        navigation.update(ListScreen)
         communication.clear()
         clear.clearViewModel(EditViewModel::class.java)
     }

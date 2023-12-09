@@ -13,10 +13,10 @@ interface Screen {
         }
     }
 
-    abstract class AddEdit(private val id: Int) : Screen {
+    abstract class ReplaceEdit(private val id: Int) : Screen {
         override fun show(fragmentManager: FragmentManager, containerId: Int) {
             fragmentManager.beginTransaction()
-                .add(containerId, EditFragment.newInstance(id))
+                .replace(containerId, EditFragment.newInstance(id))
                 .addToBackStack("")
                 .commit()
         }
