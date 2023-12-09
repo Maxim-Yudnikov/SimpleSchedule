@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="monday">Понедельник</string>
+    <string name="tuesday">Вторник</string>
+    <string name="wednesday">Среда</string>
+    <string name="thursday">Четверг</string>
+    <string name="friday">Пятница</string>
+    <string name="unknown_day">Неизвестный день</string>
+    <string name="empty_edit_lesson_list">Вы ещё не создали уроков</string>
+    <string name="edit_lesson_hint">Уроков</string>
+    <string name="add_item_button">Добавить урок</string>
+    <string name="start_time_hint">Время начала</string>
+    <string name="end_time_hint">Время конца</string>
+    <string name="save_button">Сохранить</string>
+    <string name="empty_lesson_list">Пусто</string>
+</resources>

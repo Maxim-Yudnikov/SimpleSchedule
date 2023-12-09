@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">Simple Schedule</string>
+    <string name="app_name" translatable="false">Simple Schedule</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="unknown_day">Unknown day</string>
+    <string name="empty_edit_lesson_list">You haven\'t created any lessons yet</string>
+    <string name="edit_lesson_hint">Lesson</string>
+    <string name="add_item_button">Add item</string>
+    <string name="start_time_hint">Start time</string>
+    <string name="end_time_hint">End time</string>
+    <string name="save_button">Save</string>
+    <string name="empty_lesson_list">Empty</string>
 </resources>

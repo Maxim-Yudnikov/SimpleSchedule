@@ -1,6 +1,7 @@
 package com.maxim.simpleschedule.core.presentation
 
 import android.widget.TextView
+import com.maxim.simpleschedule.R
 import com.maxim.simpleschedule.edit.presentation.EditLessonAdapter
 import com.maxim.simpleschedule.list.presentation.LessonAdapter
 import com.maxim.simpleschedule.list.presentation.ListAdapter
@@ -25,14 +26,12 @@ abstract class DayUi {
 
         override fun showTitle(textView: TextView) {
             textView.text = when (id) {
-                0 -> "Monday"
-                1 -> "Tuesday"
-                2 -> "Wednesday"
-                3 -> "Thursday"
-                4 -> "Friday"
-                5 -> "Saturday"
-                6 -> "Sunday"
-                else -> "Unknown day"
+                0 -> textView.context.getString(R.string.monday)
+                1 -> textView.context.getString(R.string.tuesday)
+                2 -> textView.context.getString(R.string.wednesday)
+                3 -> textView.context.getString(R.string.thursday)
+                4 -> textView.context.getString(R.string.friday)
+                else -> textView.context.getString(R.string.unknown_day)
             }
         }
 
