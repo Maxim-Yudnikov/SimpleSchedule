@@ -2,12 +2,16 @@ package com.maxim.simpleschedule.presentation
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import com.maxim.simpleschedule.core.domain.DayDomain
+import com.maxim.simpleschedule.core.presentation.DayUi
+import com.maxim.simpleschedule.list.domain.ListInteractor
+import com.maxim.simpleschedule.list.presentation.ListCommunication
+import com.maxim.simpleschedule.list.presentation.ListViewModel
 import kotlinx.coroutines.Dispatchers
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import java.lang.IllegalStateException
 
-class ListInteractorTest {
+class ListViewModelTest {
     @Test
     fun test_init() {
         val communication = FakeListCommunication()
@@ -17,9 +21,9 @@ class ListInteractorTest {
         viewModel.init()
         assertEquals(
             listOf(
-                DayDomain(
+                DayUi.Base(
                     id = 0, startTime = "", endTime = "",
-                    lessons = emptyList<LessonDomain>()
+                    lessons = emptyList()
                 )
             ), communication.list
         )
@@ -40,11 +44,11 @@ class ListInteractorTest {
     private class FakeListInteractor : ListInteractor {
         override suspend fun getList(): List<DayDomain> {
             return listOf(
-                DayDomain(
+                DayDomain.Base(
                     id = 0,
                     startTime = "",
                     endTime = "",
-                    lessons = emptyList<LessonDomain>()
+                    lessons = emptyList()
                 )
             )
         }

@@ -1,7 +1,10 @@
 package com.maxim.simpleschedule.main.presentation
 
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.maxim.simpleschedule.core.presentation.Navigation
+import com.maxim.simpleschedule.core.presentation.Screen
 import com.maxim.simpleschedule.list.presentation.ListScreen
 import com.maxim.simpleschedule.main.domain.MainInteractor
 import kotlinx.coroutines.CoroutineDispatcher
@@ -24,5 +27,9 @@ class MainViewModel(
                 navigation.update(ListScreen)
             }
         }
+    }
+
+    fun observe(owner: LifecycleOwner, observer: Observer<Screen>) {
+        navigation.observe(owner, observer)
     }
 }
