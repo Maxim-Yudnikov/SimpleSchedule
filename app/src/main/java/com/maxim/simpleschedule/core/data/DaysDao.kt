@@ -12,4 +12,7 @@ interface DaysDao {
 
     @Query("SELECT * FROM days_table WHERE id IS :id")
     suspend fun getDay(id: Int): DayRoom?
+
+    @Query("SELECT * FROM days_table")
+    suspend fun getList(): List<DayRoom>
 }
