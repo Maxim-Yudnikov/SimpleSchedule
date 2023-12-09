@@ -11,21 +11,25 @@ class MainDataSourceTest {
     fun test_check_days() = runBlocking {
         val dao = FakeDao()
         val dataSource = MainDataSource.Base(dao)
+
+        dao.getDayReturnNull = true
         dataSource.checkDays()
         assertEquals(listOf(
             DayRoom(0, "", "", emptyList()),
-            DayRoom(0, "", "", emptyList()),
-            DayRoom(0, "", "", emptyList()),
-            DayRoom(0, "", "", emptyList()),
-            DayRoom(0, "", "", emptyList()),
+            DayRoom(1, "", "", emptyList()),
+            DayRoom(2, "", "", emptyList()),
+            DayRoom(3, "", "", emptyList()),
+            DayRoom(4, "", "", emptyList()),
         ), dao.saveDayList)
 
+        dao.getDayReturnNull = false
+        dataSource.checkDays()
         assertEquals(listOf(
             DayRoom(0, "", "", emptyList()),
-            DayRoom(0, "", "", emptyList()),
-            DayRoom(0, "", "", emptyList()),
-            DayRoom(0, "", "", emptyList()),
-            DayRoom(0, "", "", emptyList()),
+            DayRoom(1, "", "", emptyList()),
+            DayRoom(2, "", "", emptyList()),
+            DayRoom(3, "", "", emptyList()),
+            DayRoom(4, "", "", emptyList()),
         ), dao.saveDayList)
     }
 }
