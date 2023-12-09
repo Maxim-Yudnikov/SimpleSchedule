@@ -16,7 +16,7 @@ interface EditInteractor {
 
     class Base(private val dataSource: EditDataSource, private val failureHandler: FailureHandler): EditInteractor {
         override suspend fun getDay(id: Int): DayDomain {
-            return dataSource.getDay(id)
+            return dataSource.getDay(id).checkEmptyLessons()
         }
 
         override fun getCachedDay(): DayDomain {

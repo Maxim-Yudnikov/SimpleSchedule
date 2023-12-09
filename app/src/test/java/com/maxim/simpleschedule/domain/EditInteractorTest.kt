@@ -3,6 +3,7 @@ package com.maxim.simpleschedule.domain
 import com.maxim.simpleschedule.core.domain.DayDomain
 import com.maxim.simpleschedule.core.domain.EmptyLessonListException
 import com.maxim.simpleschedule.core.domain.FailureHandler
+import com.maxim.simpleschedule.core.domain.LessonDomain
 import com.maxim.simpleschedule.edit.data.EditDataSource
 import com.maxim.simpleschedule.edit.domain.EditInteractor
 import com.maxim.simpleschedule.list.domain.SaveResult
@@ -23,8 +24,13 @@ class EditInteractorTest {
 
     @Test
     fun test_get_day() = runBlocking {
-        val actual = interactor.getDay(123)
-        assertEquals(DayDomain.Base(123, "start", "end", emptyList()), actual)
+        dataSource.getDayReturnEmpty = true
+        var actual = interactor.getDay(123)
+        assertEquals(DayDomain.Base(123, "start", "end", listOf(LessonDomain.Empty)), actual)
+
+        dataSource.getDayReturnEmpty = false
+        actual = interactor.getDay(123)
+        assertEquals(DayDomain.Base(123, "start", "end", listOf(LessonDomain.Base("name"))), actual)
     }
 
     @Test
@@ -86,8 +92,12 @@ class EditInteractorTest {
         val saveFirstList = mutableListOf<String>()
         val saveSecondList = mutableListOf<String>()
         var cancelCounter = 0
+        var getDayReturnEmpty = true
         override suspend fun getDay(id: Int): DayDomain {
-            return DayDomain.Base(id, "start", "end", emptyList())
+            return DayDomain.Base(
+                id, "start", "end",
+                if (getDayReturnEmpty) emptyList() else listOf(LessonDomain.Base("name"))
+            )
         }
 
         override fun getCachedDay(): DayDomain {
