@@ -1,4 +1,4 @@
-package com.maxim.simpleschedule
+package com.maxim.simpleschedule.presentation
 
 import org.junit.Assert.assertEquals
 

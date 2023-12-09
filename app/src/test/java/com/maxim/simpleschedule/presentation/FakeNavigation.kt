@@ -2,8 +2,6 @@ package com.maxim.simpleschedule.presentation
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import com.maxim.simpleschedule.NAVIGATION
-import com.maxim.simpleschedule.Order
 import com.maxim.simpleschedule.core.presentation.Navigation
 import com.maxim.simpleschedule.core.presentation.Screen
 import java.lang.IllegalStateException

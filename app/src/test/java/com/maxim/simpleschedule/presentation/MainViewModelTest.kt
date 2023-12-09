@@ -1,9 +1,5 @@
 package com.maxim.simpleschedule.presentation
 
-import com.maxim.simpleschedule.INTERACTOR
-import com.maxim.simpleschedule.NAVIGATION
-import com.maxim.simpleschedule.Order
-import com.maxim.simpleschedule.core.presentation.Navigation
 import com.maxim.simpleschedule.core.presentation.Screen
 import com.maxim.simpleschedule.list.presentation.ListScreen
 import com.maxim.simpleschedule.main.domain.MainInteractor

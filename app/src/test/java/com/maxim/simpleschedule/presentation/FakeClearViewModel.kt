@@ -1,8 +1,6 @@
 package com.maxim.simpleschedule.presentation
 
 import androidx.lifecycle.ViewModel
-import com.maxim.simpleschedule.CLEAR
-import com.maxim.simpleschedule.Order
 import com.maxim.simpleschedule.core.presentation.ClearViewModel
 
 class FakeClearViewModel(private val order: Order): ClearViewModel {

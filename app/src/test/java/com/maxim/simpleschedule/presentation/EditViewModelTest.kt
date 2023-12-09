@@ -2,11 +2,6 @@ package com.maxim.simpleschedule.presentation
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import com.maxim.simpleschedule.CLEAR
-import com.maxim.simpleschedule.CLEAR_COMMUNICATION
-import com.maxim.simpleschedule.INTERACTOR
-import com.maxim.simpleschedule.NAVIGATION
-import com.maxim.simpleschedule.Order
 import com.maxim.simpleschedule.edit.domain.EditInteractor
 import com.maxim.simpleschedule.edit.presentation.EditCommunication
 import com.maxim.simpleschedule.core.domain.DayDomain
