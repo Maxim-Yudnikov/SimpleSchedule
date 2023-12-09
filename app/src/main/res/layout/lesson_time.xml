@@ -4,7 +4,9 @@
     android:id="@+id/lessonTime"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="end"
+    android:layout_marginBottom="2dp"
+    android:background="@color/white"
+    android:textColor="#C6C6C6"
     android:padding="5dp"
     android:textSize="14sp"
     tools:text="12:00" />

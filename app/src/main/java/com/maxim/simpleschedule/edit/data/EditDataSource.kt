@@ -21,12 +21,12 @@ interface EditDataSource {
         private val dayIdCache: DayIdCache,
         private val lessonsCache: LessonsCache
     ) : EditDataSource {
+        //todo not tested getDay and put in lessonsCache
         override suspend fun getDay(id: Int): DayDomain {
             dayIdCache.cache(id)
-            return dao.getDay(id)?.toDomain() ?: DayDomain.Base(
-                id, "", "",
-                listOf(LessonDomain.Base("day not found"))
-            )
+            val day = dao.getDay(id)!!
+            lessonsCache.update(day.lessons)
+            return day.toDomain()
         }
 
         override fun getCachedDay(): DayDomain {

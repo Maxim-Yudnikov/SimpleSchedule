@@ -24,12 +24,12 @@ interface EditCommunication {
     class Base: All, AbstractCommunication.Abstract<String>(MutableLiveData()) {
         private val dayLiveData = MutableLiveData<DayUi>()
         override fun clear() {
-            liveData.value = null
-            dayLiveData.value = null
+            liveData.postValue("")
+            dayLiveData.postValue(DayUi.Empty)
         }
 
         override fun updateDay(value: DayUi) {
-            dayLiveData.value = value
+            dayLiveData.postValue(value)
         }
 
         override fun observeDay(owner: LifecycleOwner, observer: Observer<DayUi>) {

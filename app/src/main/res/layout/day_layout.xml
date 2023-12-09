@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    android:background="@color/white"
+    android:paddingBottom="5dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -23,8 +26,10 @@
 
         <ImageButton
             android:id="@+id/editButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="5dp"
+            android:background="@null"
             android:src="@drawable/baseline_edit_24" />
 
     </LinearLayout>

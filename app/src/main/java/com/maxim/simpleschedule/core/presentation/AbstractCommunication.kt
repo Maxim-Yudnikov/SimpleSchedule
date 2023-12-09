@@ -18,7 +18,7 @@ interface AbstractCommunication {
     ) : Update<T>, Observe<T>
     {
         override fun update(value: T) {
-            liveData.value = value
+            liveData.postValue(value)
         }
 
         override fun observe(owner: LifecycleOwner, observer: Observer<T>) {

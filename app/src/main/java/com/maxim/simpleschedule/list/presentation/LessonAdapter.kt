@@ -1,11 +1,13 @@
 package com.maxim.simpleschedule.list.presentation
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.maxim.simpleschedule.core.presentation.LessonUi
+import com.maxim.simpleschedule.databinding.LessonEmptyBinding
 import com.maxim.simpleschedule.databinding.LessonLayoutBinding
 import com.maxim.simpleschedule.databinding.LessonTimeBinding
 
@@ -28,7 +30,7 @@ class LessonAdapter : RecyclerView.Adapter<LessonAdapter.ItemViewHolder>() {
         }
     }
 
-    class EmptyViewHolder(binding: LessonTimeBinding) : ItemViewHolder(binding)
+    class EmptyViewHolder(binding: LessonEmptyBinding) : ItemViewHolder(binding)
 
     override fun getItemViewType(position: Int): Int {
         val item = list[position]
@@ -51,7 +53,7 @@ class LessonAdapter : RecyclerView.Adapter<LessonAdapter.ItemViewHolder>() {
                 )
             )
             else -> EmptyViewHolder(
-                LessonTimeBinding.inflate(
+                LessonEmptyBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
@@ -72,6 +74,7 @@ class LessonAdapter : RecyclerView.Adapter<LessonAdapter.ItemViewHolder>() {
         list.clear()
         list.addAll(newList)
         result.dispatchUpdatesTo(this)
+        Log.d("MyLog", list.size.toString())
     }
 }
 

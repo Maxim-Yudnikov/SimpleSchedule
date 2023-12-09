@@ -1,7 +1,11 @@
 package com.maxim.simpleschedule.edit.presentation
 
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.maxim.simpleschedule.core.presentation.ClearViewModel
+import com.maxim.simpleschedule.core.presentation.DayUi
+import com.maxim.simpleschedule.core.presentation.LessonUi
 import com.maxim.simpleschedule.core.presentation.Navigation
 import com.maxim.simpleschedule.core.presentation.Screen
 import com.maxim.simpleschedule.edit.domain.EditInteractor
@@ -20,9 +24,11 @@ class EditViewModel(
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
     private val viewModelScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
-    fun init(id: Int) {
-        viewModelScope.launch(dispatcher) {
-            communication.updateDay(interactor.getDay(id).toUi())
+    fun init(isFirstRun: Boolean, id: Int) {
+        if(isFirstRun) {
+            viewModelScope.launch(dispatcher) {
+                communication.updateDay(interactor.getDay(id).toUi())
+            }
         }
     }
 
@@ -58,5 +64,13 @@ class EditViewModel(
         navigation.update(Screen.Pop)
         communication.clear()
         clear.clearViewModel(EditViewModel::class.java)
+    }
+
+    fun observeDay(owner: LifecycleOwner, observer: Observer<DayUi>) {
+        communication.observeDay(owner, observer)
+    }
+
+    fun observeError(owner: LifecycleOwner, observer: Observer<String>) {
+        communication.observe(owner, observer)
     }
 }

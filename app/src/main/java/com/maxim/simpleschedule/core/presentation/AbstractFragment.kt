@@ -21,8 +21,8 @@ abstract class AbstractFragment<B: ViewBinding>: Fragment() {
     }
     protected abstract fun bind(inflater: LayoutInflater, container: ViewGroup): B
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 }

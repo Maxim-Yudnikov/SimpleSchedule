@@ -4,6 +4,8 @@
     android:id="@+id/lessonName"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:padding="3dp"
     android:textSize="16sp"
-    tools:text="Math" />
+    tools:text="Math"
+    android:layout_marginBottom="2dp"/>
