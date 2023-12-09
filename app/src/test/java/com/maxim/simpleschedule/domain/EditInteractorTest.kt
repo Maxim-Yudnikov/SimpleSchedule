@@ -71,7 +71,7 @@ class EditInteractorTest {
     fun test_save_failure() = runBlocking {
         dataSource.saveReturnSuccess = false
         val actual = interactor.save("start", "end")
-        assertEquals(SaveResult.Error("Lesson's name at position 1 is empty"), actual)
+        assertEquals(SaveResult.Error("Empty list"), actual)
         assertEquals(listOf("start"), dataSource.saveFirstList)
         assertEquals(listOf("end"), dataSource.saveSecondList)
     }
@@ -121,7 +121,7 @@ class EditInteractorTest {
             saveFirstList.add(startTime)
             saveSecondList.add(endTime)
             if (!saveReturnSuccess)
-                throw EmptyLessonListException("Lesson's name at position 1 is empty")
+                throw EmptyLessonListException()
         }
 
         override fun cancel() {

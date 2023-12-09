@@ -11,7 +11,7 @@ class FakeDao : DaysDao {
     }
 
     override suspend fun getDay(id: Int): DayRoom? {
-        return if (getDayReturnNull) null else DayRoom(id, "", "", emptyList())
+        return if (getDayReturnNull) null else DayRoom(id, "start", "end", emptyList())
     }
 
     override suspend fun getList(): List<DayRoom> {

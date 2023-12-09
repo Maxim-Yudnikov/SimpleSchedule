@@ -6,7 +6,8 @@ interface FailureHandler {
     class Base: FailureHandler {
         override fun handle(e: Exception): Failure {
             return when (e) {
-                is EmptyLessonListException -> EmptyLessonListError(e.message!!)
+                is EmptyLessonListException -> EmptyLessonListError()
+                is EmptyItemNameException -> EmptyItemNameError(e.message!!.toInt())
                 else -> UnknownError()
             }
         }

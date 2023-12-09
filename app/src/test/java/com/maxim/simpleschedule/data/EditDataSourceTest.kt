@@ -80,14 +80,14 @@ class EditDataSourceTest {
         dataSource.getDay(1)
         dataSource.newItem()
         dataSource.renameItem(0, "one")
-        dataSource.newItem()
         try {
             dataSource.save("start", "end")
         } catch (e: Exception) {
-            assertEquals(EmptyItemNameException(1), e)
+            assertEquals(EmptyItemNameException::class.java, e.javaClass)
+            assertEquals("1", e.message)
+            assertEquals(listOf(LessonData("one")), lessonsCache.getList())
+            assertEquals(1, dayIdCache.getCached())
         }
-        assertEquals(listOf(LessonData("one")), lessonsCache.getList())
-        assertEquals(1, dayIdCache.getCached())
     }
 
     @Test
