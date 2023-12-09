@@ -13,4 +13,6 @@
     <string name="end_time_hint">Время конца</string>
     <string name="save_button">Сохранить</string>
     <string name="empty_lesson_list">Пусто</string>
+    <string name="undo_changes">Вы уверены, что хотите отменить изменения?</string>
+    <string name="positive_answer">Да</string>
 </resources>

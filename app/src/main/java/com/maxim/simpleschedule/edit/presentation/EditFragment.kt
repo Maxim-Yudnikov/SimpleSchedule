@@ -1,12 +1,14 @@
 package com.maxim.simpleschedule.edit.presentation
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import com.maxim.simpleschedule.R
 import com.maxim.simpleschedule.core.presentation.AbstractFragment
 import com.maxim.simpleschedule.core.presentation.ProvideViewModel
 import com.maxim.simpleschedule.databinding.FragmentEditBinding
@@ -15,7 +17,10 @@ class EditFragment : AbstractFragment<FragmentEditBinding>() {
     private lateinit var viewModel: EditViewModel
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-            viewModel.cancel()
+            AlertDialog.Builder(this@EditFragment.context).setTitle(R.string.undo_changes)
+                .setPositiveButton(R.string.positive_answer) { _, _ ->
+                viewModel.cancel()
+            }.create().show()
         }
     }
     override fun bind(inflater: LayoutInflater, container: ViewGroup) =
