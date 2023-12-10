@@ -1,6 +1,8 @@
 package com.maxim.simpleschedule.core.presentation
 
+import android.util.Log
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.maxim.simpleschedule.R
 import com.maxim.simpleschedule.edit.presentation.EditLessonAdapter
 import com.maxim.simpleschedule.list.presentation.LessonAdapter
@@ -13,7 +15,7 @@ abstract class DayUi {
     open fun showTime(startTextView: TextView, endTextView: TextView) {}
     open fun edit(listener: ListAdapter.Listener) {}
     open fun updateLessonAdapter(adapter: LessonAdapter) {}
-    open fun updateEditLessonAdapter(adapter: EditLessonAdapter) {}
+    open fun updateEditLessonAdapter(adapter: EditLessonAdapter, recyclerView: RecyclerView) {}
     data class Base(
         private val id: Int,
         private val startTime: String,
@@ -56,8 +58,15 @@ abstract class DayUi {
             adapter.update(list)
         }
 
-        override fun updateEditLessonAdapter(adapter: EditLessonAdapter) {
-            adapter.update(lessons)
+        override fun updateEditLessonAdapter(
+            adapter: EditLessonAdapter,
+            recyclerView: RecyclerView
+        ) {
+            val scroll = adapter.itemCount + 1 == lessons.size
+            Log.d("MyLog", "itemCount: ${adapter.itemCount}, lessonsSize: ${lessons.size}")
+            adapter.update(lessons, scroll)
+            if (scroll)
+                recyclerView.scrollToPosition(lessons.size - 1)
         }
     }
 

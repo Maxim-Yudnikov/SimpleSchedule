@@ -74,7 +74,6 @@ class LessonAdapter : RecyclerView.Adapter<LessonAdapter.ItemViewHolder>() {
         list.clear()
         list.addAll(newList)
         result.dispatchUpdatesTo(this)
-        Log.d("MyLog", list.size.toString())
     }
 }
 

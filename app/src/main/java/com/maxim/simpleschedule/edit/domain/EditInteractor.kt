@@ -20,7 +20,7 @@ interface EditInteractor {
         }
 
         override fun getCachedDay(): DayDomain {
-            return dataSource.getCachedDay()
+            return dataSource.getCachedDay().checkEmptyLessons()
         }
 
         override fun newItem() {

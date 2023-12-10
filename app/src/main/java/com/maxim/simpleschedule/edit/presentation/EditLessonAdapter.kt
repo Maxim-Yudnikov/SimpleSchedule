@@ -1,5 +1,7 @@
 package com.maxim.simpleschedule.edit.presentation
 
+import android.text.Editable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.EditText
@@ -14,12 +16,16 @@ class EditLessonAdapter(private val listener: Listener) :
     RecyclerView.Adapter<EditLessonAdapter.ItemViewHolder>() {
     private val list = mutableListOf<LessonUi>()
     private val watchers = mutableListOf<Pair<EditText, SimpleTextWatcher>>()
+    private var setFocus: Boolean = true
 
     abstract class ItemViewHolder(binding: ViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
         open fun bind(
-            item: LessonUi, listener: Listener,
-            position: Int, watchers: MutableList<Pair<EditText, SimpleTextWatcher>>
+            item: LessonUi,
+            listener: Listener,
+            position: Int,
+            watchers: MutableList<Pair<EditText, SimpleTextWatcher>>,
+            setFocus: Boolean
         ) {
         }
     }
@@ -27,19 +33,22 @@ class EditLessonAdapter(private val listener: Listener) :
     class LessonViewHolder(private val binding: EditLessonLayoutBinding) : ItemViewHolder(binding) {
         override fun bind(
             item: LessonUi, listener: Listener,
-            position: Int, watchers: MutableList<Pair<EditText, SimpleTextWatcher>>
+            position: Int, watchers: MutableList<Pair<EditText, SimpleTextWatcher>>,
+            setFocus: Boolean
         ) {
             item.show(binding.lessonNameEditText)
             binding.deleteLessonButton.setOnClickListener {
                 listener.delete(position)
             }
             val textWatcher = object : SimpleTextWatcher() {
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                override fun afterTextChanged(s: Editable?) {
                     listener.rename(position, s.toString())
                 }
             }
             binding.lessonNameEditText.addTextChangedListener(textWatcher)
             watchers.add(Pair(binding.lessonNameEditText, textWatcher))
+            if (setFocus)
+                binding.lessonNameEditText.requestFocus()
         }
     }
 
@@ -69,16 +78,17 @@ class EditLessonAdapter(private val listener: Listener) :
     override fun getItemCount() = list.size
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.bind(list[position], listener, position, watchers)
+        holder.bind(list[position], listener, position, watchers, (position + 1) == itemCount && setFocus)
     }
 
-    fun update(newList: List<LessonUi>) {
+    fun update(newList: List<LessonUi>, setFocus: Boolean) {
         list.clear()
         list.addAll(newList)
         watchers.forEach {
             it.first.removeTextChangedListener(it.second)
         }
         watchers.clear()
+        this.setFocus = setFocus
         notifyDataSetChanged()
     }
 }

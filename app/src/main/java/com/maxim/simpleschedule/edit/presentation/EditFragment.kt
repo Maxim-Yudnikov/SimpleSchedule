@@ -42,7 +42,7 @@ class EditFragment : AbstractFragment<FragmentEditBinding>() {
         })
         binding.recyclerView.adapter = adapter
         viewModel.observeDay(this) {
-            it.updateEditLessonAdapter(adapter)
+            it.updateEditLessonAdapter(adapter, binding.recyclerView)
             it.showTitle(binding.dayTitle)
             if (savedInstanceState == null)
                 it.showTime(binding.startTimeEditText, binding.endTimeEditText)
