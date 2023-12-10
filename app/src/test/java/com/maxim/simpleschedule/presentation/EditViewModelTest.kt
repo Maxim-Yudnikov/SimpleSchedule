@@ -42,7 +42,7 @@ class EditViewModelTest {
         assertEquals(emptyList<DayUi>(), communication.dayList)
 
         viewModel.init(true, 56)
-        assertEquals(listOf(DayUi.Base(56, "start", "end", emptyList())), communication.dayList)
+        assertEquals(listOf(DayUi.Empty, DayUi.Base(56, "start", "end", emptyList())), communication.dayList)
     }
 
     @Test
@@ -52,6 +52,7 @@ class EditViewModelTest {
         viewModel.newItem()
         assertEquals(
             listOf(
+                DayUi.Empty,
                 DayUi.Base(56, "start", "end", emptyList()),
                 DayUi.Base(56, "start", "end", listOf(LessonUi.Base(""))),
             ),
@@ -86,6 +87,7 @@ class EditViewModelTest {
         assertEquals(listOf(0), interactor.deleteItemList)
         assertEquals(
             listOf(
+                DayUi.Empty,
                 DayUi.Base(56, "start", "end", emptyList()),
                 DayUi.Base(56, "start", "end", listOf(LessonUi.Base(""))),
                 DayUi.Base(56, "start", "end", listOf(LessonUi.Base(""), LessonUi.Base(""))),

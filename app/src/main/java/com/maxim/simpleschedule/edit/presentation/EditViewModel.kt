@@ -27,6 +27,7 @@ class EditViewModel(
     private val viewModelScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     fun init(isFirstRun: Boolean, id: Int) {
         if(isFirstRun) {
+            communication.updateDay(DayUi.Empty)
             viewModelScope.launch(dispatcher) {
                 communication.updateDay(interactor.getDay(id).toUi())
             }

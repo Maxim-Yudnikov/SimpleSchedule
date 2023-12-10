@@ -4,6 +4,7 @@ import com.maxim.simpleschedule.core.domain.DayDomain
 import com.maxim.simpleschedule.core.domain.EmptyLessonListException
 import com.maxim.simpleschedule.core.domain.FailureHandler
 import com.maxim.simpleschedule.core.domain.LessonDomain
+import com.maxim.simpleschedule.core.presentation.LessonUi
 import com.maxim.simpleschedule.edit.data.EditDataSource
 import com.maxim.simpleschedule.edit.domain.EditInteractor
 import com.maxim.simpleschedule.list.domain.SaveResult
@@ -36,7 +37,7 @@ class EditInteractorTest {
     @Test
     fun test_get_cached_day() {
         val actual = interactor.getCachedDay()
-        assertEquals(DayDomain.Base(666, "cached", "day", emptyList()), actual)
+        assertEquals(DayDomain.Base(666, "cached", "day", listOf(LessonDomain.Empty)), actual)
     }
 
     @Test

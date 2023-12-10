@@ -45,6 +45,7 @@ class EditFragment : AbstractFragment<FragmentEditBinding>() {
             it.showTitle(binding.dayTitle)
             if (savedInstanceState == null)
                 it.showTime(binding.startTimeEditText, binding.endTimeEditText)
+            it.setEnableButtons(binding.addItemButton, binding.saveButton)
         }
         viewModel.observeError(this) {
             if (it.isNotEmpty()) Toast.makeText(context, it, Toast.LENGTH_LONG).show()

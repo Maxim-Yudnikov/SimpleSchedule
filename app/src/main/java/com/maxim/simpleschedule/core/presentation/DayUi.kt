@@ -1,6 +1,7 @@
 package com.maxim.simpleschedule.core.presentation
 
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.maxim.simpleschedule.R
@@ -13,6 +14,7 @@ abstract class DayUi {
     open fun sameContent(item: DayUi): Boolean = false
     open fun showTitle(textView: TextView) {}
     open fun showTime(startTextView: TextView, endTextView: TextView) {}
+    open fun setEnableButtons(addButton: Button, saveButton: Button) {}
     open fun edit(listener: ListAdapter.Listener) {}
     open fun updateLessonAdapter(adapter: LessonAdapter) {}
     open fun updateEditLessonAdapter(adapter: EditLessonAdapter, recyclerView: RecyclerView) {}
@@ -68,7 +70,17 @@ abstract class DayUi {
             if (scroll)
                 recyclerView.scrollToPosition(lessons.size - 1)
         }
+
+        override fun setEnableButtons(addButton: Button, saveButton: Button) {
+            addButton.isEnabled = true
+            saveButton.isEnabled = true
+        }
     }
 
-    object Empty : DayUi()
+    object Empty : DayUi() {
+        override fun setEnableButtons(addButton: Button, saveButton: Button) {
+            addButton.isEnabled = false
+            saveButton.isEnabled = false
+        }
+    }
 }
